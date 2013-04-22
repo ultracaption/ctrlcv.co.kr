@@ -1,0 +1,44 @@
+<div class="lecture">
+  <div class="row">
+    <div class="span2 title-provider-container">
+      <div class="title">
+        <%= link_to lecture.title, lecture %>
+      </div>
+      <div class="provider">
+        <%= lecture.provider %>
+      </div>
+      <div class="bookmark">
+        <%= form_tag bookmarks_path, class: 'form-bookmark' do %>
+          <%= hidden_field_tag :lecture_id, lecture.id %>
+          <% if current_user && current_user.bookmarked?(lecture) %>
+            <%= submit_tag '찜하기', class: 'btn btn-small disabled' %>
+          <% else %>
+            <%= submit_tag '찜하기', class: 'btn btn-small btn-warning' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="span1">
+      <% if lecture.assessment_count > 0 && current_user && current_user.finished_registration? %>
+        <div class="overall-score" data-overall-score="<%= assessment.overall_score %>">
+          <%= assessment.overall_score %>
+        </div>
+      <% else %>
+        <div class="assess-link-container">
+          <%= link_to '평가<br>하기'.html_safe, lecture, class: 'btn btn-large btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="span6 score-views-container">
+      <div class="inner-container">
+        <%= render partial: 'shared/lecture_scores', locals: { lecture: assessment } %>
+        <div class="assessment-content">
+          <%= c assessment.content %>
+          <div class="timestamp">
+            <abbr class="timeago" title="<%= assessment.created_at %>"></abbr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

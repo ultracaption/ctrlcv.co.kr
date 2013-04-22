@@ -1,0 +1,40 @@
+<%= form_for @user, url: registrations_path, html: { class: 'form-horizontal form-registration' } do |f| %>
+  <fieldset>
+    <h1>회원가입</h1>
+    <div class="control-group">
+      <%= f.label :username, '학번', class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :username, placeholder: '학번' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, '비밀번호', class: 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, placeholder: '비밀번호' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password_confirmation, '비밀번호 확인', class: 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, placeholder: '비밀번호 확인' %>
+      </div>
+    </div>
+    <div class="explanation">
+      오직 닉네임만 공개되오니 신중히 선택해주세요.
+    </div>
+    <div class="control-group">
+      <%= f.label :nickname, '닉네임', class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :nickname, placeholder: '닉네임' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :contact, '휴대전화', class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact, placeholder: '휴대전화' %>
+      </div>
+    </div>
+  </fieldset>
+
+  <%= f.submit '가입하기', class: 'btn btn-block btn-primary btn-large' %>
+<% end %>

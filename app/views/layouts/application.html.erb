@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>조선대학교 강의평가사이트</title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag '/jqui-theme/jquery-ui-1.9.1.custom.min.css' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<script type="text/javascript">
+  <% if notice || alert %>
+    $(function(){
+      humane.log('<%= notice || alert %>');
+    });
+  <% end %>
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="span6 offset3">
+      <h1 class="top-logo"><%= link_to '컨트롤씨브이', root_path %></h1>
+    </div>
+    <div class="span3">
+      <h2 class="school-logo">조선대학교</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <% if user_signed_in? %>
+        <div class="user-info-container">
+          <%= current_user.nickname %>님 환영합니다!
+          <%= link_to '로그아웃', destroy_user_session_path, class: 'btn btn-small' %>
+        </div>
+      <% else %>
+        <%= form_for :user, url: user_session_path, html: { class: 'form-inline form-sign-in' } do |f| %>
+          <%= f.text_field :username, class: 'input-small', placeholder: 'ID' %>
+          <%= f.password_field :password, class: 'input-small', placeholder: '비밀번호' %>
+          <%= f.submit '로그인', class: 'btn' %>
+          <%= link_to '회원가입', new_registration_path %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="span8">
+      <%= render partial: 'shared/search_form' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3 sidebar">
+      <div class="inner-container">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="<%= @active_menu == 'assessments/index' ? 'active' : '' %>"><%= link_to '강의평가', assessments_path %></li>
+          <li class="<%= @active_menu == 'assessments/mine' ? 'active' : '' %>"><%= link_to '마이페이지', mine_assessments_path %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-content-container span9">
+      <div class="inner-container">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <div class="row footer">
+    <div class"span12">
+      <div class="well well-small">
+        <p>Directed by 최용호, 홍종현, 전수인, 김진우, 최두리, 이윤황</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<h1 class="lecture-title"><%=@lecture.title %><br /><small><%= @lecture.provider %></small></h1>
+
+<div class="well lecture details">
+  <div class="row">
+    <div class="span1">
+      <% if current_user.finished_registration? %>
+        <div class="overall-score" data-overall-score="<%= @lecture.rounded_overall_score %>">
+          <%= s @lecture.overall_score %>
+        </div>
+      <% end %>
+    </div>
+    <div class="span6">
+      <%= render partial: 'shared/lecture_scores', locals: { lecture: @lecture } %>
+    </div>
+  </div>
+</div>
+
+<%= form_for [@lecture, @assessment], html: { class: 'form-assessment' } do |f| %>
+  <h3>
+    <% if @assessment.new_record? %>
+      평가하기
+    <% else %>
+      이전 평가 수정하기
+    <% end %>
+  </h3>
+
+  <div class="score-container row">
+    <div class="workload-score-container span3">
+      수업의 난이도는?
+    </div>
+    <div class="progress span4">
+      <div class="bar bar-success" style="width: <%= @assessment.workload_score * 10 %>%;"><%= @assessment.workload_score %></div>
+    </div>
+    <%= f.hidden_field :workload_score %>
+  </div>
+
+  <div class="score-container row">
+    <div class="presentation-score span3">
+      교수님의 열정은?
+    </div>
+    <div class="progress span4">
+      <div class="bar" style="width: <%= @assessment.presentation_score * 10 %>%;"><%= @assessment.presentation_score %></div>
+    </div>
+    <%= f.hidden_field :presentation_score %>
+  </div>
+
+  <div class="score-container row">
+    <div class="grading-score span3">
+      학점에 대한 만족도는?
+    </div>
+    <div class="progress span4">
+      <div class="bar bar-warning" style="width: <%= @assessment.grading_score * 10 %>%;"><%= @assessment.grading_score %></div>
+    </div>
+    <%= f.hidden_field :grading_score %>
+  </div>
+
+  <div class="score-container row outstanding">
+    <div class="overall-score span3">
+      <strong>이 과목에 대한 전체적인 평점은?</strong>
+    </div>
+    <div class="progress progress-striped span4">
+      <div class="bar bar-danger" style="width: <%= @assessment.overall_score * 10 %>%;"><%= @assessment.overall_score %></div>
+    </div>
+    <%= f.hidden_field :overall_score %>
+  </div>
+
+  <div class="row">
+    <div class="grading-score span3">
+      하고 싶은 말
+    </div>
+    <div class="span4">
+      <%= f.text_area :content, class: 'input-block-level textarea-content', placeholder: '자유롭게 써 주세요' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4 offset3">
+      <%= f.submit '작성하기', class: 'btn btn-primary btn-large btn-block' %>
+    </div>
+  </div>
+<% end %>
+
+<% @assessments.each do |assessment| %>
+  <div class="assessment well well-small <%= assessment.user_id == current_user.id ? 'mine' : '' %>">
+    <div class="timestamp">
+      <abbr class="timeago" title="<%= assessment.created_at %>"></abbr>
+    </div>
+    <div class="author">
+      <%= assessment.user.nickname %>
+    </div>
+    <div class="scores">
+      총 평점 <span class="label label-important"><%= s(assessment.overall_score, :user_id => assessment.user_id) %></span>
+      수업 난이도 <span class="label label-success"><%= s(assessment.workload_score, :user_id => assessment.user_id) %></span>
+      교수님 열정 <span class="label label-info"><%= s(assessment.presentation_score, :user_id => assessment.user_id) %></span>
+      학점 만족도 <span class="label label-warning"><%= s(assessment.grading_score, :user_id => assessment.user_id) %></span>
+    </div>
+
+    <div class="content">
+      <%= c(assessment.content, :user_id => assessment.user_id) %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    $('.form-assessment .score-container').scoreInput({
+      target: '.progress',
+      progressBar: '.bar',
+      input: 'input'
+    });
+  });
+</script>

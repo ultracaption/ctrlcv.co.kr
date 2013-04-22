@@ -1,0 +1,4 @@
+<%= form_tag search_lectures_path, method: 'get', class: 'form-search' do %>
+  <%= search_field_tag :query, @query, class: 'input input-xxlarge' %>
+  <%= submit_tag '검색', class: 'btn' %>
+<% end %>

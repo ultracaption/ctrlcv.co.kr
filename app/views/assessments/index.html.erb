@@ -1,0 +1,26 @@
+<div class="sub-nav">
+  <% if @active_menu == 'assessments/index' %>
+    <span class="active">최신 평가 보기</span>
+    |
+    <%= link_to '평점순 보기', lectures_path %>
+  <% else %>
+    <span class="active">내 평가 보기</span>
+    |
+    <%= link_to '내가 찜한 강의 보기', bookmarks_path %>
+  <% end %>
+</div>
+
+<% if @assessments.empty? %>
+  등록된 강의평이 없습니다.
+<% else %>
+  <% @assessments.each do |assessment| %>
+    <%= render partial: 'shared/assessment', locals: { lecture: assessment.lecture, assessment: assessment } %>
+  <% end %>
+<% end %>
+
+<%= will_paginate @assessments, :params => {:term => @term} -%>
+
+<div class="modal hide">
+  <div class="modal-header">
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="sub-nav">
+  <% if controller.is_a? BookmarksController %>
+    <%= link_to '내 평가 보기', mine_assessments_path %>
+    |
+    <span class="active">내가 찜한 강의 보기</span>
+  <% elsif !@query %>
+    <%= link_to '최신 평가 보기', assessments_path %>
+    |
+    <span class="active">평점 순 보기</span>
+  <% end %>
+</div>
+
+<% if @lectures.empty? %>
+  검색 결과가 없습니다.
+<% else %>
+  <% @lectures.each do |lecture| %>
+    <%= render partial: 'shared/lecture', locals: { lecture: lecture } %>
+  <% end %>
+<% end %>
+
+<% unless @lectures.is_a? Array %>
+  <%= will_paginate @lectures, :params => { :query => @query } %>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal form-registration' }) do |f| %>
+  <fieldset>
+    <h1>로그인</h1>
+    <div class="control-group">
+      <%= f.label :username, '학번', class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :username, placeholder: '학번' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, '비밀번호', class: 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, placeholder: '비밀번호' %>
+      </div>
+    </div>
+  </fieldset>
+<div class="row">
+  <div class="span3">
+    <%= f.submit '로그인', class: 'btn btn-block btn-primary btn-large' %>
+  </div>
+  <div class="span3">
+    <%= link_to '회원가입', new_registration_path, class: 'btn btn-block btn-large' %>
+  </div>
+</div>
+<% end %>

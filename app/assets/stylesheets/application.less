@@ -1,0 +1,205 @@
+/*
+ *= require bootstrap_and_overrides
+ *= require jackedup
+ */
+@import 'mixins';
+
+body {
+  margin:0;
+  background-color:#fff;
+  font-family:'나눔고딕',NanumGothic,'돋움',Dotum,AppleGothic,sans-serif;
+  font-size:14px;
+}
+
+.top-logo {
+  a {
+    .sprite(96px, 352px, "top_logo.png");
+  }
+  width: 352px;
+  margin: 20px auto;
+}
+
+.sidebar {
+  text-align: center;
+  .explanation {
+    margin: 80px auto 20px auto;
+    .sprite(187px, 180px, "sidebar_introduction.png");
+  }
+  .inner-container {
+    padding: 10px;
+  }
+}
+
+.school-logo {
+  .sprite(32px, 131px, "school_logo.png");
+  float: right;
+}
+
+.form-registration {
+  fieldset {
+    h1 {
+      text-align: center;
+      font-size: 1.3em;
+    }
+    padding: 20px 0;
+    margin: 20px 0;
+    .background_with_border(#efefef);
+    .explanation {
+      text-align: center;
+      padding: 10px 0;
+      color: #444;
+    }
+  }
+}
+.form-search {
+  text-align: right;
+  padding: 5px 0;
+
+  input {
+    vertical-align: top;
+  }
+}
+.user-info-container {
+  padding: 5px 20px;
+  line-height: 30px;
+}
+.lecture {
+  background: #fcfcfc;
+
+  .title-provider-container {
+    text-align: center;
+    .title {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+  }
+  .progress {
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  margin: 10px 0;
+  .form-bookmark {
+    margin: 10px 0;
+  }
+  .overall-score {
+    margin-left: -20px;
+    margin-top: 5px;
+    line-height: 80px;
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    &[data-overall-score="1"]  { .sprite_without_hiding_contents(80px, 80px, "1.png"); }
+    &[data-overall-score="2"]  { .sprite_without_hiding_contents(80px, 80px, "2.png"); }
+    &[data-overall-score="3"]  { .sprite_without_hiding_contents(80px, 80px, "3.png"); }
+    &[data-overall-score="4"]  { .sprite_without_hiding_contents(80px, 80px, "4.png"); }
+    &[data-overall-score="5"]  { .sprite_without_hiding_contents(80px, 80px, "5.png"); }
+    &[data-overall-score="6"]  { .sprite_without_hiding_contents(80px, 80px, "6.png"); }
+    &[data-overall-score="7"]  { .sprite_without_hiding_contents(80px, 80px, "7.png"); }
+    &[data-overall-score="8"]  { .sprite_without_hiding_contents(80px, 80px, "8.png"); }
+    &[data-overall-score="9"]  { .sprite_without_hiding_contents(80px, 80px, "9.png"); }
+    &[data-overall-score="10"]  { .sprite_without_hiding_contents(80px, 80px, "10.png"); }
+    .circle(40px);
+  }
+  .score-views-container {
+    .inner-container {
+      margin: 10px 0;
+    }
+  }
+  &.details {
+    padding-left: 90px;
+  }
+}
+.form-assessment {
+  padding: 0 20px 20px 20px;
+  h3 {
+    color: #777;
+    text-align: center;
+    margin: 10px auto;
+  }
+  .background_with_border(#efefef);
+  .progress {
+    cursor: pointer;
+  }
+  .textarea-content {
+    height: 70px;
+  }
+}
+.outstanding {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.lecture-title {
+  text-align: center;
+}
+.assess-link-container {
+  padding: 20px 0;
+  .btn {
+    margin: 0 0 0 -10px;
+  }
+}
+.assessment-content {
+  background: #fefefe;
+  padding: 10px;
+  margin-right: 10px;
+  color: #888;
+  .timestamp {
+    text-align: right;
+    text-decoration: none;
+    cursor: normal;
+  }
+}
+.form-sign-in {
+  margin-bottom: 0;
+}
+.footer {
+  color: #666;
+  line-height: 1em;
+  font-size: 0.9em;
+  text-align: center;
+}
+.assessment {
+  .author {
+    font-weight: bold;
+  }
+  .content {
+    margin: 5px 0;
+  }
+  .timestamp {
+    text-align: right;
+    float: right;
+  }
+}
+.nav-pills.nav-stacked {
+  .active {
+    a {
+      color: #ecb531;
+      background: none;
+      font-weight: bold;
+    }
+    border-right: 8px solid #ecb531;
+  }
+  li {
+    a {
+      color: #222;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 1.5em;
+      text-align: right;
+    }
+  }
+}
+
+.sub-nav {
+  text-align: right;
+  .active {
+    color: #ecb531;
+    border-bottom: 2px solid #ecb531;
+  }
+  a {
+    color: #111;
+    &:hover {
+      text-decoration: none;
+      background: #ccc;
+    }
+  }
+}

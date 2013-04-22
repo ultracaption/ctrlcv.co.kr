@@ -1,0 +1,26 @@
+<div class="score-container row">
+  <div class="workload-score-container span2">
+    수업의 난이도는?
+  </div>
+  <div class="progress span4">
+    <div class="bar bar-success" style="width: <%= s(lecture.workload_score * 10) %>%;"><%=s lecture.workload_score %></div>
+  </div>
+</div>
+
+<div class="score-container row">
+  <div class="presentation-score span2">
+    교수님의 열정은?
+  </div>
+  <div class="progress span4">
+    <div class="bar" style="width: <%= s(lecture.presentation_score * 10) %>%;"><%=s lecture.presentation_score %></div>
+  </div>
+</div>
+
+<div class="score-container row">
+  <div class="grading-score span2">
+    학점에 대한 만족도는?
+  </div>
+  <div class="progress span4">
+    <div class="bar bar-warning" style="width: <%= s(lecture.grading_score * 10) %>%;"><%=s lecture.grading_score %></div>
+  </div>
+</div>
